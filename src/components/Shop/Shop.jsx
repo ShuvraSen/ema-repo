@@ -4,11 +4,22 @@ import './Shop.css'
 
 const Shop = () => {
 const [productts,setProducts]=useState([])
+//event handler er jonno alada ekta state declair becaue, manush ei product add korte o pare ba na o pare
+const [cart,setCart]=useState([])//shopping collection rakhbo tai empty array dite hobe
+
 useEffect(()=>{
     fetch('products.json')
     .then(res=>res.json())
     .then(data=>setProducts(data))
 },[])
+
+const handletoCart=(product)=>{
+// console.log(product);
+const newCart=[...cart,product];
+setCart(newCart);
+
+
+}
 //console.log(products);
 
 //data load korar jonno amader 2ta jinis korte hoy/
@@ -22,12 +33,14 @@ useEffect(()=>{
                 productts.map(product=><Product
                 key={product.id}
                 product={product}
+                handletoCart={handletoCart}
 
                 ></Product>)
                }
             </div>
             <div className='cart-container'>
                 <h1>this is order side</h1>
+                <p>selcted items:{cart.length}</p>
             </div>
             
         </div>
