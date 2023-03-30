@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
 const [productts,setProducts]=useState([])
+//console.log(productts,"productssssssss");[]
 //event handler er jonno alada ekta state declair becaue, manush ei product add korte o pare ba na o pare
-const [cart,setCart]=useState([])//shopping collection rakhbo tai empty array dite hobe
+const [cartt,setCart]=useState([])//shopping collection rakhbo tai empty array dite hobe
 
 useEffect(()=>{
     fetch('products.json')
@@ -15,7 +17,7 @@ useEffect(()=>{
 
 const handletoCart=(product)=>{
 // console.log(product);
-const newCart=[...cart,product];
+const newCart=[...cartt,product];
 setCart(newCart);
 
 
@@ -39,8 +41,7 @@ setCart(newCart);
                }
             </div>
             <div className='cart-container'>
-                <h1>this is order side</h1>
-                <p>selcted items:{cart.length}</p>
+               <Cart cartt={cartt}></Cart>
             </div>
             
         </div>
